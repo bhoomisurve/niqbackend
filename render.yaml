@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: narrativeiq-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 2 --timeout 120
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: NEW_USER_CREDITS
+        value: "5"
